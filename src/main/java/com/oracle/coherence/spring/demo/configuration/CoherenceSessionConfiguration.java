@@ -15,11 +15,15 @@
  */
 package com.oracle.coherence.spring.demo.configuration;
 
+import com.oracle.coherence.spring.configuration.session.SessionConfigurationBean;
+import com.oracle.coherence.spring.configuration.session.SessionType;
 import com.oracle.coherence.spring.session.config.annotation.web.http.EnableCoherenceHttpSession;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import com.oracle.coherence.spring.configuration.annotation.EnableCoherence;
 import org.springframework.session.FlushMode;
+import org.springframework.session.web.context.AbstractHttpSessionApplicationInitializer;
 
 /**
  * @author Gunnar Hillert
@@ -32,6 +36,15 @@ import org.springframework.session.FlushMode;
 		sessionTimeoutInSeconds = 1800,
 		useEntryProcessor = false
 )
-public class CoherenceSessionConfiguration {
+public class CoherenceSessionConfiguration extends AbstractHttpSessionApplicationInitializer {
+
+	@Bean
+	public SessionConfigurationBean sessionConfigurationBeanDefault() {
+		final SessionConfigurationBean sessionConfigurationBean =
+				new SessionConfigurationBean();
+		sessionConfigurationBean.setType(SessionType.CLIENT);
+		sessionConfigurationBean.setConfig("remote-cache-config.xml");
+		return sessionConfigurationBean;
+	}
 
 }

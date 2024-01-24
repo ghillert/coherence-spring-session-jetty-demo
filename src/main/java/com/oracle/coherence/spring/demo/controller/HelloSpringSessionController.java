@@ -43,7 +43,7 @@ public class HelloSpringSessionController {
 			counter++;
 			session.setAttribute("counter", counter);
 		}
-		System.out.println("counter = " + counter);
+		System.out.println("Session ID: " + this.session.getId() + "; counter = " + counter);
 		return "hello";
 	}
 }
