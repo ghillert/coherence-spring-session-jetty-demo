@@ -17,11 +17,11 @@
 		<java.version>17</java.version>
 		<maven.minimum.version>3.6.0</maven.minimum.version>
 
-		<coherence.version>22.06.6</coherence.version>
+		<coherence.version>22.06.7</coherence.version>
 		<coherence-spring.version>3.3.5</coherence-spring.version>
 		<spring-framework.version>5.3.31</spring-framework.version>
 
-		<javax.servlet-api.version>4.0.1</javax.servlet-api.version>
+		<javax.servlet-api.version>3.1.0</javax.servlet-api.version>
 		<logback.version>1.4.14</logback.version>
 
 		<maven-jar-plugin.version>3.3.0</maven-jar-plugin.version>

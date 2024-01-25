@@ -16,7 +16,7 @@
 
     <caching-scheme-mapping>
         <cache-mapping>
-            <cache-name>*</cache-name>
+            <cache-name>hello-world</cache-name>
             <scheme-name>remote</scheme-name>
         </cache-mapping>
     </caching-scheme-mapping>

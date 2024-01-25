@@ -19,5 +19,9 @@
                 <class-name>com.oracle.coherence.spring.session.serialization.pof.MapSessionPofSerializer</class-name>
             </serializer>
         </user-type>
+        <user-type>
+            <type-id>4000</type-id>
+            <class-name>com.oracle.coherence.spring.session.SessionUpdateEntryProcessor</class-name>
+        </user-type>
     </user-type-list>
 </pof-config>
