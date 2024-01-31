@@ -33,6 +33,7 @@ import org.springframework.web.servlet.view.JstlView;
 @Configuration
 @ComponentScan(basePackages = "com.oracle.coherence.spring.demo.controller")
 public class WebMvcConfig implements WebMvcConfigurer {
+
 	@Bean
 	public ViewResolver internalResourceViewResolver() {
 		InternalResourceViewResolver bean = new InternalResourceViewResolver();
@@ -41,4 +42,6 @@ public class WebMvcConfig implements WebMvcConfigurer {
 		bean.setSuffix(".jsp");
 		return bean;
 	}
+
+
 }
