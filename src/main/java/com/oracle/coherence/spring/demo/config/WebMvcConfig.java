@@ -15,14 +15,18 @@
  */
 package com.oracle.coherence.spring.demo.config;
 
+import com.oracle.coherence.spring.demo.pof.User;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.context.annotation.SessionScope;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
+
+import javax.servlet.annotation.WebListener;
 
 /**
  *
@@ -43,5 +47,10 @@ public class WebMvcConfig implements WebMvcConfigurer {
 		return bean;
 	}
 
-
+	@Bean(name = "user")
+	@SessionScope
+	public User userBean() {
+		System.out.println("Creating Session Scoped user bean");
+		return new User("John Doe", "test@test.com");
+	}
 }

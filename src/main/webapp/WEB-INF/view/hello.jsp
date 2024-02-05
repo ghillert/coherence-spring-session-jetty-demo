@@ -6,5 +6,8 @@
 <div>
     Counter: <%= request.getSession().getAttribute("counter") %>
 </div>
+<div>
+  User  ${user.name} - ${user.email}
+</div>
 </body>
 </html>

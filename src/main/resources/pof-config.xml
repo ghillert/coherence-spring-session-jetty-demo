@@ -23,5 +23,9 @@
             <type-id>4000</type-id>
             <class-name>com.oracle.coherence.spring.session.SessionUpdateEntryProcessor</class-name>
         </user-type>
+        <user-type>
+            <type-id>5000</type-id>
+            <class-name>com.oracle.coherence.spring.demo.pof.User</class-name>
+        </user-type>
     </user-type-list>
 </pof-config>

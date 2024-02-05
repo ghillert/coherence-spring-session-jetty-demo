@@ -15,8 +15,10 @@
  */
 package com.oracle.coherence.spring.demo.controller;
 
+import com.oracle.coherence.spring.demo.pof.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -32,8 +34,36 @@ public class HelloSpringSessionController {
 	@Autowired
 	private HttpSession session;
 
+	@Autowired
+	private User user;
+
+	@GetMapping("/clear")
+	public String clearSession() {
+		System.out.println("Invalidate Session with ID: " + this.session.getId());
+		session.invalidate();
+		return "redirect:/hello";
+	}
+
+	@GetMapping("/user")
+	public String setupUser() {
+		System.out.println("Session ID: " + this.session.getId());
+
+		System.out.println("session.getAttributeNames()");
+		final var names = session.getAttributeNames();
+		while (names.hasMoreElements()) {
+			System.out.println(names.nextElement());
+		}
+		System.out.println("=======");
+		System.out.println(this.user.getName() + " " + this.user.getEmail());
+
+		user.setName("Foo Bar");
+		user.setEmail("foo@bar.com");
+		System.out.println(this.user.getName() + " " + this.user.getEmail());
+		return "redirect:/hello";
+	}
+
 	@GetMapping("/hello")
-	public String hello() {
+	public String hello(Model model) {
 		Integer counter = (Integer) session.getAttribute("counter");
 		if (counter == null) {
 			counter = 1;
@@ -43,6 +73,9 @@ public class HelloSpringSessionController {
 			counter++;
 			session.setAttribute("counter", counter);
 		}
+
+		model.addAttribute("user", this.user);
+
 		System.out.println("Session ID: " + this.session.getId() + "; counter = " + counter
 				+ "; session attribute foo = " + session.getAttribute("foo"));
 		return "hello";

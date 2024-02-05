@@ -16,12 +16,15 @@
 package com.oracle.coherence.spring.demo.initializer;
 
 import com.oracle.coherence.spring.demo.config.WebMvcConfig;
+import org.springframework.web.context.request.RequestContextListener;
 import org.springframework.web.filter.DelegatingFilterProxy;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 import com.oracle.coherence.spring.demo.config.AppConfig;
 
 import javax.servlet.Filter;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
 
 /**
  * @author Gunnar Hillert
@@ -49,4 +52,5 @@ public class AppInitializer extends AbstractAnnotationConfigDispatcherServletIni
 		delegateFilterProxy.setTargetBeanName("myCustomFilter");
 		return new Filter[]{delegateFilterProxy};
 	}
+
 }
