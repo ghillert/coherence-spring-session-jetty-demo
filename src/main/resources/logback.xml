@@ -7,7 +7,7 @@
 
 	<logger name="Coherence" level="DEBUG" />
 	<logger name="com.oracle.coherence.spring" level="INFO" />
-	<logger name="org.springframework" level="WARN" />
+	<logger name="org.springframework" level="DEBUG" />
 
 	<root level="info">
 		<appender-ref ref="STDOUT" />

@@ -15,42 +15,38 @@
  */
 package com.oracle.coherence.spring.demo.initializer;
 
-import com.oracle.coherence.spring.demo.config.WebMvcConfig;
-import org.springframework.web.context.request.RequestContextListener;
+import com.oracle.coherence.spring.demo.config.AppConfig;
+import org.springframework.core.annotation.Order;
 import org.springframework.web.filter.DelegatingFilterProxy;
+import org.springframework.web.filter.RequestContextFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-import com.oracle.coherence.spring.demo.config.AppConfig;
-
 import javax.servlet.Filter;
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
 
 /**
- * @author Gunnar Hillert
+ * This class is used to initialize the Spring Application.
  */
-public class AppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
+@Order(1)
+public class MainApplicationInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
-	@Override
 	protected Class<?>[] getRootConfigClasses() {
 		return new Class[] { AppConfig.class };
 	}
 
-	@Override
 	protected Class<?>[] getServletConfigClasses() {
-		return new Class[] { WebMvcConfig.class };
-	}
-
-	@Override
-	protected String[] getServletMappings() {
-		return new String[] { "/" };
+		return new Class[] {};
 	}
 
 	@Override
 	protected Filter[] getServletFilters() {
 		DelegatingFilterProxy delegateFilterProxy = new DelegatingFilterProxy();
 		delegateFilterProxy.setTargetBeanName("myCustomFilter");
-		return new Filter[]{delegateFilterProxy};
+		return new Filter[]{new RequestContextFilter(), delegateFilterProxy};
+	}
+
+	@Override
+	protected String[] getServletMappings() {
+		return new String[] { "/" };
 	}
 
 }

@@ -16,9 +16,6 @@
 package com.oracle.coherence.spring.demo.controller;
 
 import com.oracle.coherence.spring.demo.pof.User;
-import org.springframework.stereotype.Component;
-import org.springframework.web.context.WebApplicationContext;
-import org.springframework.web.context.support.WebApplicationContextUtils;
 import org.springframework.web.filter.GenericFilterBean;
 
 import javax.servlet.FilterChain;
@@ -31,7 +28,7 @@ import java.io.IOException;
 
 public class CustomFilter extends GenericFilterBean {
 
-	private User user;
+	private User user;  // Session scoped bean
 
 	public CustomFilter(User user) {
 		System.out.println("CustomFilter constructor");
@@ -47,13 +44,15 @@ public class CustomFilter extends GenericFilterBean {
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		HttpSession session = httpRequest.getSession(true);
 
-		user.setEmail("tttttt");
-		user.setName("fggdfgdfgdfgdf");
+		System.out.println("Custom filter! - User: " + user.getName() + " " + user.getEmail());
+		System.out.println("Custom filter! - Change User.");
+
+		user.setEmail("changed@test.com");
+		user.setName("Change In Filter");
 
 		if (session != null) {
-
 			System.out.println("Custom filter! - Session ID: " + session.getId());
-			session.setAttribute("foo22", "bar");
+			session.setAttribute("foo", "bar");
 		}
 		else {
 			System.out.println("Custom filter! - No session available (skip setting attribute).");

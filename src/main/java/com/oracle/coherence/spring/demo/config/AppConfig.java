@@ -15,13 +15,30 @@
  */
 package com.oracle.coherence.spring.demo.config;
 
+import com.oracle.coherence.spring.demo.controller.CustomFilter;
+import com.oracle.coherence.spring.demo.pof.User;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
+import org.springframework.session.MapSessionRepository;
+
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @author Gunnar Hillert
  */
 @Configuration
 @ComponentScan(basePackages = "com.oracle.coherence.spring.demo")
+@Import(WebMvcConfig.class)
 public class AppConfig {
+	@Bean(name = "myCustomFilter")
+	public CustomFilter myCustomFilter(User user) {
+		return new CustomFilter(user);
+	}
+
+	@Bean
+	public MapSessionRepository sessionRepository() {
+		return new MapSessionRepository(new ConcurrentHashMap<>());
+	}
 }

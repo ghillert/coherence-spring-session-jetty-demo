@@ -20,15 +20,14 @@ import com.oracle.coherence.spring.configuration.session.SessionType;
 import com.oracle.coherence.spring.session.config.annotation.web.http.EnableCoherenceHttpSession;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
 import com.oracle.coherence.spring.configuration.annotation.EnableCoherence;
 import org.springframework.session.FlushMode;
-import org.springframework.session.web.context.AbstractHttpSessionApplicationInitializer;
 
 /**
  * @author Gunnar Hillert
  */
 @Configuration
+// @EnableSpringHttpSession
 @EnableCoherence
 @EnableCoherenceHttpSession(
 		cache = "spring:session:sessions",
@@ -36,7 +35,7 @@ import org.springframework.session.web.context.AbstractHttpSessionApplicationIni
 		sessionTimeoutInSeconds = 1800,
 		useEntryProcessor = false
 )
-public class CoherenceSessionConfiguration extends AbstractHttpSessionApplicationInitializer {
+public class CoherenceSessionConfiguration {
 
 	@Bean
 	public SessionConfigurationBean sessionConfigurationBeanDefault() {
