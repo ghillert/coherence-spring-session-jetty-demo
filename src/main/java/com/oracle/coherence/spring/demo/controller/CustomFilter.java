@@ -15,7 +15,10 @@
  */
 package com.oracle.coherence.spring.demo.controller;
 
+import com.oracle.coherence.spring.demo.pof.User;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 import org.springframework.web.filter.GenericFilterBean;
 
 import javax.servlet.FilterChain;
@@ -26,10 +29,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@Component("myCustomFilter")
 public class CustomFilter extends GenericFilterBean {
-	public CustomFilter() {
+
+	private User user;
+
+	public CustomFilter(User user) {
 		System.out.println("CustomFilter constructor");
+		this.user = user;
 	}
 
 	@Override
@@ -39,9 +45,13 @@ public class CustomFilter extends GenericFilterBean {
 			FilterChain chain) throws IOException, ServletException {
 
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
-		HttpSession session = httpRequest.getSession(false);
+		HttpSession session = httpRequest.getSession(true);
+
+		user.setEmail("tttttt");
+		user.setName("fggdfgdfgdfgdf");
 
 		if (session != null) {
+
 			System.out.println("Custom filter! - Session ID: " + session.getId());
 			session.setAttribute("foo22", "bar");
 		}
