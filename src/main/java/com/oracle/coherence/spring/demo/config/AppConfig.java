@@ -22,6 +22,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.session.MapSessionRepository;
+import org.springframework.session.config.annotation.web.http.SpringHttpSessionConfiguration;
 
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -30,7 +31,7 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 @Configuration
 @ComponentScan(basePackages = "com.oracle.coherence.spring.demo")
-@Import(WebMvcConfig.class)
+@Import({SpringHttpSessionConfiguration.class, WebMvcConfig.class})
 public class AppConfig {
 	@Bean(name = "myCustomFilter")
 	public CustomFilter myCustomFilter(User user) {
