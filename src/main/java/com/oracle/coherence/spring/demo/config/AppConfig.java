@@ -38,8 +38,4 @@ public class AppConfig {
 		return new CustomFilter(user);
 	}
 
-	@Bean
-	public MapSessionRepository sessionRepository() {
-		return new MapSessionRepository(new ConcurrentHashMap<>());
-	}
 }
