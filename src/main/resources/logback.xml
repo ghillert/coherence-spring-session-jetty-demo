@@ -6,8 +6,9 @@
 	</appender>
 
 	<logger name="Coherence" level="DEBUG" />
-	<logger name="com.oracle.coherence.spring" level="INFO" />
-	<logger name="org.springframework" level="DEBUG" />
+	<logger name="com.oracle.coherence.spring" level="DEBUG" />
+	<logger name="com.oracle.coherence.spring.session" level="DEBUG" />
+	<logger name="org.springframework.session" level="DEBUG" />
 
 	<root level="info">
 		<appender-ref ref="STDOUT" />
