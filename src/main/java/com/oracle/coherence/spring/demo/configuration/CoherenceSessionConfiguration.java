@@ -23,6 +23,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import com.oracle.coherence.spring.configuration.annotation.EnableCoherence;
+import org.springframework.context.annotation.ImportResource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.session.FlushMode;
 import org.springframework.session.config.SessionRepositoryCustomizer;
@@ -40,6 +41,7 @@ import java.time.Duration;
 		sessionTimeoutInSeconds = 1800,
 		useEntryProcessor = false
 )
+@ImportResource("classpath:spring-session-context.xml")
 public class CoherenceSessionConfiguration {
 
 	static {
@@ -91,4 +93,9 @@ public class CoherenceSessionConfiguration {
 			sessionRepository.setDefaultMaxInactiveInterval(Duration.ofSeconds(sessionTimeoutInSeconds));
 		};
 	}
+
+//	@Bean
+//	public SessionEventHttpSessionListenerAdapter sessionEventHttpSessionListenerAdapter(List<HttpSessionListener> listeners) {
+//		return new SessionEventHttpSessionListenerAdapter(listeners);
+//	}
 }

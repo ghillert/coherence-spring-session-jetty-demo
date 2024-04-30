@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="mySessionEventListener" class="com.oracle.coherence.spring.demo.configuration.MyHttpSessionListener"/>
+
+<!--
+
+Not needed - Coherence Spring Session will automatically provide this. If you accidentally provide this, the
+SessionEventListener will be called twice.
+
+-->
+
+<!--    <bean class="org.springframework.session.web.http.SessionEventHttpSessionListenerAdapter">-->
+<!--        <constructor-arg>-->
+<!--            <list>-->
+<!--                <ref bean="mySessionEventListener"/>-->
+<!--            </list>-->
+<!--        </constructor-arg>-->
+<!--    </bean>-->
+
+</beans>
